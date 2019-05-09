@@ -20,7 +20,7 @@ exports.run = (url, options, config = null) => {
             .then(result => chrome.kill()
                 .then(() => {
                     if(index.name){
-                        fs.writeFile(`${path[2]}/${index.name}-${formatedDate}.${index.extension}`, result.report, error => { if (error) { throw error; }})}
+                        fs.writeFile(`reports/${path[2]}/${index.name}-${formatedDate}.${index.extension}`, result.report, error => { if (error) { throw error; }})}
                     })
                 .then(() => mapper.map(result.lhr)))
             .catch((error) => {
