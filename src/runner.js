@@ -11,8 +11,8 @@ const re = /([^\.]+).(.*?)\.([^\.]+)$/;
 exports.run = (url, options, config = null) => {
     const path = url.match(re);
     // Creating folder from the page name (last word before `.`)
-    if (!fs.existsSync(path[2])){
-        fs.mkdirSync(path[2]);
+    if (!fs.existsSync(`reports/${path[2]}`)){
+        fs.mkdirSync(`reports/${path[2]}`);
     }
     return chromeLauncher.launch(options).then(chrome => {
         options.port = chrome.port;
