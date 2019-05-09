@@ -13,6 +13,9 @@ NodeJS app that get metrics from a website using [lighthouse](https://github.com
 - `--graphite-prefix` (String, defaults to empty string): the argument's value will be added as a prefix to all metrics sent to graphite. You should at least set the website's url (replace all dots and other special characters to avoid issues with graphite), to be able to collect different metrics for different pages without metric collision.
 - `--metrics-blacklist` (Values separated by commas, defaults to empty string): set this argument to ignore one or more metrics from being sent to graphite. This is useful when you have a limit on the number of metrics stored by graphite. Names of metrics are listed below.
 - `--function-blacklist` (Values separated by commas, defaults to empty string): set this argument to ignore one or more aggregation functions from being sent to graphite. This is useful when you have a limit on the number of metrics stored by graphite. Possible values: `min`, `max`, `mean` and `median`.
+- `--name` (String): this value will add prefix to the generated report, it's mandatory for report to be generated.
+- `--output` (String, defaults to html): generated report extension. Possible values: `csv`, `json`, `html`.
+- `--chrome-flags` (Values separated by commas, defaults to empty): set these values to change chrome behaviour. Example: `--chrome-flags=--headless,--disable-gpu,--no-sandbox,--incognito`
 
 The following command will run `lighthouse` 5 times on `https://www.example.com`, ignore the `mean` and `max` functions, and ignore the `seo-score` and `best-practices-score` metrics:
 
@@ -70,3 +73,6 @@ The list of the collected metrics is:
 - accessibility-score
 - best-practices-score
 - seo-score
+
+## Generated report
+The report will be genarated and saved in a folder named after the last word before the dot in the adress, for example using `http://www.reddit.com` will create `reddit` folder. 
