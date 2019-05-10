@@ -14,6 +14,8 @@ const url = argv._[0];
 const runs = argv.runs || 3;
 const name = argv['name'];
 const extension = argv['output'] || 'html';
+const throttlingMethod = argv['throttling-method'] || 'provided';
+const emulatedFormFactor = argv['emulated-form-factor'] || 'none';
 const chromeFlags = argv['chrome-flags'] ? argv['chrome-flags'].split(',') : [];
 const graphiteHost = argv['graphite-host'];
 const graphitePrefix = argv['graphite-prefix'] || '';
@@ -34,8 +36,8 @@ if (!name) {
 const options = {
     output: extension,
     chromeFlags: chromeFlags,
-    disableDeviceEmulation: true,
-    throttlingMethod: 'provided',
+    emulatedFormFactor: emulatedFormFactor,
+    throttlingMethod: throttlingMethod,
 };
 
 const results = [];
