@@ -6,7 +6,9 @@ const aggregate = require('./result-aggregation');
 const GraphiteClient = require('./graphite-client'); 
 
 if (argv._.length !== 1) {
-    console.error('One and only one url must be provided (i.e. `lighthouse-graphite https://www.example.com`');
+    console.error(
+        'One and only one url must be provided (i.e. `lighthouse-graphite https://www.example.com`'
+    );
     return;
 }
 
@@ -21,6 +23,9 @@ const graphiteHost = argv['graphite-host'];
 const graphitePrefix = argv['graphite-prefix'] || '';
 const metricsBlacklist = argv['metrics-blacklist'] ? argv['metrics-blacklist'].split(',') : [];
 const functionBlacklist = argv['function-blacklist'] ? argv['function-blacklist'].split(',') : [];
+const blockedUrlPatterns = argv['blocked-url-patterns']
+    ? argv['blocked-url-patterns'].split(',')
+    : [];
 
 module.exports.name = argv['name'];
 module.exports.extension = argv['output'] || 'html';
@@ -39,13 +44,21 @@ const options = {
     emulatedFormFactor: emulatedFormFactor,
     throttlingMethod: throttlingMethod,
 };
+const config = {
+    extends: 'lighthouse:default',
+    passes: [
+        {
+            blockedUrlPatterns,
+        },
+    ],
+};
 
 const results = [];
 
 (async () => {
     try {
         for (let i = 0; i < runs; i++) {
-            const result = await runner.run(url, options);
+            const result = await runner.run(url, options, config);
             results.push(result);
         }
 
