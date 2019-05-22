@@ -16,7 +16,9 @@ const url = argv._[0];
 const runs = argv.runs || 3;
 const name = argv['name'];
 const extension = argv['output'] || 'html';
-const throttlingMethod = argv['throttling-method'] || 'provided';
+const throttlingMethod = argv['throttling-method'];
+const cpuSlowdown = argv['cpu-slowdown-multiplier'] || 4;
+const throughputMbps = argv['throughput-mbps'] || 1.6;
 const emulatedFormFactor = argv['emulated-form-factor'] || 'none';
 const chromeFlags = argv['chrome-flags'] ? argv['chrome-flags'].split(',') : [];
 const graphiteHost = argv['graphite-host'];
@@ -43,6 +45,11 @@ const options = {
     chromeFlags: chromeFlags,
     emulatedFormFactor: emulatedFormFactor,
     throttlingMethod: throttlingMethod,
+    throttling: {
+        rttMs: 150,
+        throughputKbps: throughputMbps * 1024,
+        cpuSlowdownMultiplier: cpuSlowdown,
+      },
 };
 const config = {
     extends: 'lighthouse:default',
