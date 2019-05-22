@@ -2,10 +2,6 @@
 
 NodeJS app that get metrics from a website using [lighthouse](https://github.com/GoogleChrome/lighthouse/) and sends them to a graphite service.
 
-## Installation
-
-`npm i -g lighthouse-graphite`
-
 ## Usage
 
 `lighthouse-graphite url [flags]`
