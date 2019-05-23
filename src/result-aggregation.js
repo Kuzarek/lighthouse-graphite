@@ -33,7 +33,7 @@ module.exports = (resultsArray = [], metricsBlacklist = [], functionBlacklist = 
             aggregatedResult[key].max = sortedValues[resultsArray.length - 1];
         }
         if (!functionBlacklistMap.mean) {
-            aggregatedResult[key].mean = (sum / resultsArray.length).toFixed(2);
+            aggregatedResult[key].mean = Math.floor(sum / resultsArray.length);
         }
         if (!functionBlacklistMap.median) {
             aggregatedResult[key].median = median(sortedValues);
