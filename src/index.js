@@ -20,6 +20,7 @@ const throttlingMethod = argv['throttling-method'];
 const cpuSlowdown = argv['cpu-slowdown-multiplier'] || 4;
 const throughputMbps = argv['throughput-mbps'] || 1.6;
 const emulatedFormFactor = argv['emulated-form-factor'] || 'none';
+const disableStorageReset = argv['disable-storage-reset'] || 'false';
 const chromeFlags = argv['chrome-flags'] ? argv['chrome-flags'].split(',') : [];
 const graphiteHost = argv['graphite-host'];
 const graphitePrefix = argv['graphite-prefix'] || '';
@@ -45,6 +46,7 @@ const options = {
     chromeFlags: chromeFlags,
     emulatedFormFactor: emulatedFormFactor,
     throttlingMethod: throttlingMethod,
+    disableStorageReset: disableStorageReset,
     throttling: {
         rttMs: 150,
         throughputKbps: throughputMbps * 1024,
@@ -56,6 +58,7 @@ const config = {
     passes: [
         {
             blockedUrlPatterns,
+            disableStorageReset: disableStorageReset,
         },
     ],
 };
