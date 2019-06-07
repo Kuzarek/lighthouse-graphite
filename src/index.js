@@ -15,6 +15,7 @@ if (argv._.length !== 1) {
 const url = argv._[0];
 const runs = argv.runs || 3;
 const name = argv['name'];
+const logLevel = argv['log-level'];
 const extension = argv['output'] || 'html';
 const throttlingMethod = argv['throttling-method'];
 const cpuSlowdown = argv['cpu-slowdown-multiplier'] || 4;
@@ -42,6 +43,7 @@ if (!name) {
 }
 
 const options = {
+    logLevel: logLevel,
     output: extension,
     chromeFlags: chromeFlags,
     emulatedFormFactor: emulatedFormFactor,
