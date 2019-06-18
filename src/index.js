@@ -20,6 +20,7 @@ const extension = argv['output'] || 'html';
 const throttlingMethod = argv['throttling-method'];
 const cpuSlowdown = argv['cpu-slowdown-multiplier'] || 4;
 const throughputMbps = argv['throughput-mbps'] || 1.6;
+const maxWaitForLoad = argv['max-wait-for-load'] || 30000;
 const emulatedFormFactor = argv['emulated-form-factor'] || 'none';
 const disableStorageReset = argv['disable-storage-reset'] || 'false';
 const chromeFlags = argv['chrome-flags'] ? argv['chrome-flags'].split(',') : [];
@@ -43,6 +44,7 @@ if (!name) {
 }
 
 const options = {
+    maxWaitForLoad: maxWaitForLoad,
     logLevel: logLevel,
     output: extension,
     chromeFlags: chromeFlags,
@@ -60,7 +62,9 @@ const config = {
     passes: [
         {
             blockedUrlPatterns,
-            disableStorageReset: disableStorageReset,
+            pauseAfterLoadMs: 5000,
+            networkQuietThresholdMs: 5000,
+            cpuQuietThresholdMs: 5000,
         },
     ],
 };
