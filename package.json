@@ -29,7 +29,7 @@
   "dependencies": {
     "chrome-launcher": "~0.10.7",
     "graphite": "~0.1.4",
-    "lighthouse": "~5.1.0",
+    "lighthouse": "~5.2.0",
     "minimist": "~1.2.0"
   },
   "devDependencies": {
