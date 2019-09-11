@@ -62,9 +62,6 @@ const config = {
     passes: [
         {
             blockedUrlPatterns,
-            pauseAfterLoadMs: 5000,
-            networkQuietThresholdMs: 5000,
-            cpuQuietThresholdMs: 5000,
         },
     ],
 };
